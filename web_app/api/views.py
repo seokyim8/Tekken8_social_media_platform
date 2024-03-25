@@ -6,8 +6,8 @@ from .models import User, Post, Comment
 
 # Create your views here.
 
-class UserView(generics.CreateAPIView):
-    queyrset = User.objects.all()
+class UserView(generics.ListAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 # def main(request):
