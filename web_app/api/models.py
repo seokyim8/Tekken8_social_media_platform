@@ -11,10 +11,10 @@ def generate_unique_post_id(length):
             return id
 
 def generate_unqiue_comment_id(length):
-        while True:
-            id = ''.join(random.choices(string.ascii_letters, k = length))
-            if Post.objects.filter(post_id = id).count() == 0:
-                return id
+    while True:
+        id = ''.join(random.choices(string.ascii_letters, k = length))
+        if Comment.objects.filter(post_id = id).count() == 0:
+            return id
 
 
 class User(models.Model):
