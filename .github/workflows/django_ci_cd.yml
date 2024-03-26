@@ -23,6 +23,9 @@ jobs:
       run: |
         npm i webpack webpack-cli --save-dev
         npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+        npm i react react-dom --save-dev
+        npm install @babel/plugin-proposal-class-properties
+        npm install react-router-dom
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
