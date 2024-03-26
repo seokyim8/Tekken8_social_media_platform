@@ -36,7 +36,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python ./web_app/manage.py test
+        cd web_app && python manage.py test
 
   deploy:
     needs: test
