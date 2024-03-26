@@ -9,7 +9,7 @@ class general_test(TestCase):
 
     def test_get_home(self):
         '''Checking html element.'''
-        response = self.client.get("/home")
+        response = self.client.get("/temp/home")
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self) -> None:
