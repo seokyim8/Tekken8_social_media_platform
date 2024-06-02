@@ -10,9 +10,11 @@ const AuthLayout = (props) => {
             <Navigate to = "/" />
         ) : (
             <>
-                <section>
+                <section className='flex flex-1 justify-center items-center flex-col py-10'>
                     <Outlet /> {/* Outlet is used as a placeholder for rendering child routes/components*/}
                 </section>
+
+                <img src="/static/images/nina-kick.png" alt="logo" className='hidden xl:block h-screen w-1/2 object-cover bg-no-repeat' />
             </>
         )}
         </>
