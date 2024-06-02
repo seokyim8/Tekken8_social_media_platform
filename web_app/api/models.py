@@ -25,7 +25,7 @@ class User(models.Model):
     date_created = models.DateField(auto_now_add = True)
 
 class Post(models.Model):
-    post_id = models.CharField(max_length = 40, unique = True, null = False, primary_key = True)
+    post_id = models.CharField(max_length = 40, unique = True, null = False, primary_key = True, default = generate_unique_post_id)
     title = models.CharField(max_length = 50, null = False, default = "default title")
     body = models.TextField(max_length = 500, null = False)
     author = models.ForeignKey(User, on_delete = models.CASCADE)
