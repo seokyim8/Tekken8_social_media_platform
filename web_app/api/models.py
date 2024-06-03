@@ -18,11 +18,13 @@ def generate_unqiue_comment_id(length):
 
 
 class User(models.Model):
-    user_id = models.CharField(max_length = 30, unique = True, null = False, primary_key = True)
+    email = models.CharField(max_length = 30, unique = True, null = False, primary_key = True)
     password = models.CharField(max_length = 30, null = False)
     first_name = models.CharField(max_length = 30, null = False)
     last_name = models.CharField(max_length = 30, null = False)
     date_created = models.DateField(auto_now_add = True)
+    phone_number = models.CharField(max_length=10, null = False, default = "Something")
+    nickname =  models.CharField(max_length=30, null = False, default="Someone")
 
 class Post(models.Model):
     post_id = models.CharField(max_length = 40, unique = True, null = False, primary_key = True, default = generate_unique_post_id)
