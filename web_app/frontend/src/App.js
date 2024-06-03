@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LoginPage from "./components/LoginPage";
 import SigninForm from './_auth/forms/SigninForm';
 import SignupForm from './_auth/forms/SignupForm';
 import Home from './root/pages/Home';
@@ -27,7 +26,7 @@ export default class App extends Component {
 
             {/* private routes */}
             <Route element={<RootLayout />}>
-              <Route index element={<Home />} />
+              <Route path="/home" element={<Home />} />
             </Route>
           </Routes>
         </Router>
