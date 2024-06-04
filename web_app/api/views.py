@@ -40,6 +40,10 @@ def login_user(request):
         # TODO: SHOW AN INVALID LOGIN PAGE
         messages.success(request, ("Invalid credentials.")) # TODO: DOES NOT DO ANYTHING ATM!
         return redirect("/sign-in")
+    
+def logout_user(request):
+    logout(request)
+    return redirect("/sign-in")
 
 # def main(request):
 #     return HttpResponse("Hello")
