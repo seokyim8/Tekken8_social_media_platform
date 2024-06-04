@@ -6,7 +6,7 @@ import SignupForm from './_auth/forms/SignupForm';
 import Home from './root/pages/Home';
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./root/RootLayout";
-import { AllUsers, EditPost, Explore, PostDetails, Profile } from "./root/pages";
+import { AllUsers, EditPost, Explore, PostDetails, Profile, Saved } from "./root/pages";
 import CreatePost from "./root/pages/CreatePost";
 
 
@@ -30,11 +30,12 @@ export default class App extends Component {
             <Route element={<RootLayout />}>
               <Route path="/home" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
-              <Route path="/Users" element={<AllUsers />} />
+              <Route path="/users" element={<AllUsers />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/edit-post" element={<EditPost />} />
               <Route path="/posts/:id" element={<PostDetails />} />
               <Route path="/profile/:id/*" element={<Profile />} />
+              <Route path="/saved" element={<Saved />} />
             </Route>
           </Routes>
         </Router>
