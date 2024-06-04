@@ -2,30 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 
 const Topbar = () => {
-
-
-    function signOut(e) { /* TODO: FINISHI THIS FUNCTION*/
-
-    }
-
-
     return (
-        // <section className='topbar'>
-        //     <div className='py-4 px-5'>
-                // <a href="/home" className='flex gap-3 items-center'>
-                //     <img src="/static/images/logo.png" alt="logo" width={200} height={400} />
-                // </a>
-
-        //         <div className='flex gap-4'>
-        //             <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-        //                 Sign Out
-        //             </button>
-        //         </div>
-        //     </div>
-
-        // </section>
-
-
         <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/home" className='flex gap-3 items-center'>
