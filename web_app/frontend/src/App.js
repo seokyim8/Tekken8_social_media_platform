@@ -33,8 +33,8 @@ export default class App extends Component {
               <Route path="/users" element={<AllUsers />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/edit-post" element={<EditPost />} />
-              <Route path="/posts/:id" element={<PostDetails />} />
-              <Route path="/profile/:id/*" element={<Profile />} />
+              <Route path="/posts" element={<PostDetails />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/saved" element={<Saved />} />
             </Route>
           </Routes>
