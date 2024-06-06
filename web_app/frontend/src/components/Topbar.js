@@ -2,9 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const Topbar = () => {
-    const [queryParams] = useSearchParams();
-
-
+    const [queryParams] = useSearchParams(); // TODO: DO SOMETHING WITH THIS LATER! THAT IS, IF I HAVE TO!
 
     return (
         <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">

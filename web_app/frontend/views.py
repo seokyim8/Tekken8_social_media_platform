@@ -19,13 +19,4 @@ def index(request, *args, **kwargs):
         return redirect("/sign-in")
 
 def nothing(request, *args, **kwargs):
-    return redirect("/home") # TODO: PRESERVE PARAMETERS?
-
-def home(request, *args, **kwargs):
-    if request.user.is_authenticated: # WAS KEY!!!!!!
-        if request.GET.get("username"):
-            return render(request, "frontend/index.html")
-        else:
-            return redirect("/home?username=" + request.user.username)
-    else:
-        return redirect("/sign-in")
+    return redirect("/home/") # TODO: PRESERVE PARAMETERS?

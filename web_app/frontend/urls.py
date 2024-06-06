@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import index, home, nothing
+from .views import index, nothing
 
 urlpatterns = [
     path('', nothing),
-    path('home/', home), # TODO: TO CHANGE
+    path('home/', index), # TODO: TO CHANGE
     path('sign-in', index),
     path('sign-up',index),
     path('explore/', index),
