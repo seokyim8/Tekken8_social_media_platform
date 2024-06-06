@@ -10,7 +10,7 @@ import { AllUsers, EditPost, Explore, PostDetails, Profile, Saved } from "./root
 import CreatePost from "./root/pages/CreatePost";
 
 
-export default class App extends Component {
+export default class App extends Component { // NOTE: This file will have the class-based react component structure cuz this is what worked in the beginning. Could later be changed to a function-based react component.
   constructor(props) {
     super(props);
   }

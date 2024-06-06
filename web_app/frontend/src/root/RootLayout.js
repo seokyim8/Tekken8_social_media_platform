@@ -21,7 +21,7 @@ const RootLayout = () => {
         <div className='w-full flex flex-col'>
             <Topbar />
 
-            <div className='flex flex-row'>
+            <div className='flex h-10/12 flex-row'>
                 <Leftbar />
 
                 <section className='flex flex-1 h-full'>
