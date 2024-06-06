@@ -3,14 +3,14 @@ from .views import index, home, nothing
 
 urlpatterns = [
     path('', nothing),
-    path('home', home), # TODO: TO CHANGE
+    path('home/', home), # TODO: TO CHANGE
     path('sign-in', index),
     path('sign-up',index),
-    path('explore', index),
-    path('users', index),
-    path('create-post', index),
-    path('edit-post', index),
-    path('posts', index),
-    path('profile', index),
-    path('saved', index),
+    path('explore/', index),
+    path('users/', index),
+    path('create-post/', index),
+    path('edit-post/', index),
+    path('posts/', index),
+    path('profile/', index),
+    path('saved/', index),
 ]

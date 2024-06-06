@@ -4,13 +4,28 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request, *args, **kwargs):
-    return render(request, 'frontend/index.html')
+    # For signing in or up:
+    if request.path_info == "/sign-in" or request.path_info == "/sign-up":
+        return render(request, "frontend/index.html")
+
+
+    # For other requests:
+    if request.user.is_authenticated: # WAS KEY!!!!!!
+        if request.GET.get("username"):
+            return render(request, "frontend/index.html")
+        else:
+            return redirect(request.path_info + "?username=" + request.user.username)
+    else:
+        return redirect("/sign-in")
 
 def nothing(request, *args, **kwargs):
-    return redirect("/home")
+    return redirect("/home") # TODO: PRESERVE PARAMETERS?
 
 def home(request, *args, **kwargs):
     if request.user.is_authenticated: # WAS KEY!!!!!!
-        return render(request, "frontend/index.html")
+        if request.GET.get("username"):
+            return render(request, "frontend/index.html")
+        else:
+            return redirect("/home?username=" + request.user.username)
     else:
         return redirect("/sign-in")

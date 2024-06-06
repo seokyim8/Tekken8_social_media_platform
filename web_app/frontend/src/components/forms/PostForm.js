@@ -1,6 +1,4 @@
-import React from 'react';
-
-const CreatePost = () => {
+const PostForm = () => {
     return (
         <div className='flex flex-1'>
             <div className='max-w-5xl flex-start gap-3 justify-start w-full'>
@@ -12,4 +10,4 @@ const CreatePost = () => {
     );
 }
 
-export default CreatePost;
+export default PostForm;
