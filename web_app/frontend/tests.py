@@ -7,9 +7,9 @@ class general_test(TestCase):
         '''Setting up process before unit testing.'''
         pass
 
-    def test_get_home(self):
+    def test_get_signin_page(self):
         '''Checking response code.'''
-        response = self.client.get("/")
+        response = self.client.get("/sign-in")
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self) -> None:
