@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom/client"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SigninForm from './_auth/forms/SigninForm';
 import SignupForm from './_auth/forms/SignupForm';
@@ -9,40 +9,35 @@ import RootLayout from "./root/RootLayout";
 import { AllUsers, EditPost, Explore, PostDetails, Profile, Saved } from "./root/pages";
 import CreatePost from "./root/pages/CreatePost";
 
+const App = () => {
+  return (
+    <main className="flex h-screen">
+      <Router>
+        <Routes>
+          {/* public routes */}
+          <Route element={<AuthLayout />}>
+            <Route path='/sign-in' element={<SigninForm />} />
+            <Route path='/sign-up' element={<SignupForm />} />
+          </Route>
 
-export default class App extends Component { // NOTE: This file will have the class-based react component structure cuz this is what worked in the beginning. Could later be changed to a function-based react component.
-  constructor(props) {
-    super(props);
-  }
-
-  render() { 
-    return ( /* RETURNING VALUE HAS TO BE WRAPPED */
-      <main className="flex h-screen">
-        <Router>
-          <Routes>
-            {/* public routes */}
-            <Route element={<AuthLayout />}>
-              <Route path='/sign-in' element={<SigninForm />} />
-              <Route path='/sign-up' element={<SignupForm />} />
-            </Route>
-
-            {/* private routes */}
-            <Route element={<RootLayout />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/explore" element={<Explore />} />
-              <Route path="/users" element={<AllUsers />} />
-              <Route path="/create-post" element={<CreatePost />} />
-              <Route path="/edit-post" element={<EditPost />} />
-              <Route path="/posts" element={<PostDetails />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/saved" element={<Saved />} />
-            </Route>
-          </Routes>
-        </Router>
-      </main>
-    );
-  }
+          {/* private routes */}
+          <Route element={<RootLayout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/users" element={<AllUsers />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/edit-post" element={<EditPost />} />
+            <Route path="/posts" element={<PostDetails />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/saved" element={<Saved />} />
+          </Route>
+        </Routes>
+      </Router>
+    </main>
+  );
 }
 
-const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(<App />);
+
+export default App;
