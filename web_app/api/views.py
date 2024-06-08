@@ -1,19 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import generics, status
-from .serializers import UserSerializer, PostSerializer
-from .models import User, Post, Comment
+from .serializers import PostSerializer
+from .models import Post
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 # Create your views here.
 
-class UserView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class CreateUserView(APIView):
+
+    def post(self, request, format=None): 
+        if len(User.objects.filter(username=request.POST["username"])) > 0:
+            return redirect("/sign-in") # dupliacte username already exists
+    
+        user = User.objects.create_user(username=request.POST["username"], password=request.POST["password"])
+        user.save()
+
+        return redirect("/sign-in")
+
+
 
 class PostView(APIView):
     # TODO: TEMPORARY; WILL BE FIXED!
