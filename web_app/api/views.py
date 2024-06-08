@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -29,14 +30,17 @@ def display_user_info(request, format=None):
         if request.GET.get("username"): 
             user_list = User.objects.filter(username=request.GET.get("username"))
             for user in user_list:
-                print(user.username)
-                print(user.first_name)
-            return Response(data=user)
+                data = {
+                    "username": user.username,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    # TODO: ADD MORE FIELDS LATER ON
+                }
+                return JsonResponse(data=data)
         else:
             return redirect(request.path_info + "?username=" + request.user.username)
     else:
         return redirect("/sign-in")
-
 
 
 class PostView(APIView):

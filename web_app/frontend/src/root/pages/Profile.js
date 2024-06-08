@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Profile = () => {
-    const [displayname, setDisplayname] = useState(null);
+    const [username, setUsername] = useState(null);
     const [firstname, setFirstname] = useState(null);
     const [lastname, setLastname] = useState(null);
 
@@ -19,13 +19,17 @@ const Profile = () => {
 
         const data = {
 
-        }
+        };
 
         axios.post("/api/get_user_info", data, {headers: headers}).then(function (response) {
             console.log(response)
+            setUsername(response.data["username"]);
+            setFirstname(response.data["first_name"]);
+            setLastname(response.data["last_name"]);
         }).catch(function (error) {
             console.log(error);
         });
+
     });
 
     //    /* Function used for submitting account creation request */
@@ -53,9 +57,10 @@ const Profile = () => {
     // }
 
     return (
-        <div className='w-full md:flex'>
-            
-
+        <div className='flex flex-1 mt-4 py-20'>
+            <div className='mx-2'>{username}</div>
+            <div className='mx-2'>{firstname}</div>
+            <div className='mx-2'>{lastname}</div>
         </div>
     );
 }
