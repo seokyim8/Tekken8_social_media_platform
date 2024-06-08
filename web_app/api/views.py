@@ -12,15 +12,29 @@ from django.contrib import messages
 
 # Create your views here.
 
-class CreateUserView(APIView):
+def create_user(request, format=None): 
+    if len(User.objects.filter(username=request.POST["username"])) > 0:
+        return redirect("/sign-in") # dupliacte username already exists
 
-    def post(self, request, format=None): 
-        if len(User.objects.filter(username=request.POST["username"])) > 0:
-            return redirect("/sign-in") # dupliacte username already exists
-    
-        user = User.objects.create_user(username=request.POST["username"], password=request.POST["password"])
-        user.save()
+    post_info = request.POST
 
+    user = User.objects.create_user(username=post_info["username"], password=post_info["password"], first_name=post_info["first_name"], last_name=post_info["last_name"])
+    user.save()
+
+    return redirect("/sign-in")
+
+def display_user_info(request, format=None): 
+    if request.user.is_authenticated:
+        # fetching username info and appending it to the url as a query parameter in case it isn't done already
+        if request.GET.get("username"): 
+            user_list = User.objects.filter(username=request.GET.get("username"))
+            for user in user_list:
+                print(user.username)
+                print(user.first_name)
+            return Response(data=user)
+        else:
+            return redirect(request.path_info + "?username=" + request.user.username)
+    else:
         return redirect("/sign-in")
 
 
