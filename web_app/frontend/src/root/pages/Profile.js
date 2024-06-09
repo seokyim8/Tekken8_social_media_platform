@@ -21,19 +21,19 @@ const Profile = () => {
 
         };
 
-        axios.post("/api/get_user_info", data, { headers: headers }).then(function (response) {
+        axios.get("/api/get_user_info", data, { headers: headers }).then(function (response) {
             console.log(response)
             setUsername(response.data["username"]);
             setFirstname(() => {
                 let temp = response.data["first_name"];
-                if(temp){
+                if (temp) {
                     return temp;
                 }
                 return "N";
             });
             setLastname(() => {
                 let temp = response.data["last_name"];
-                if(temp){
+                if (temp) {
                     return temp;
                 }
                 return "A";
@@ -42,15 +42,10 @@ const Profile = () => {
             console.log(error);
         });
 
-    });
+    }, []);
 
     return (
         <div className='flex flex-1 mt-4 py-20'>
-            {/* <div classNameName='mx-2'>{username}</div>
-            <div classNameName='mx-2'>{firstname}</div>
-            <div classNameName='mx-2'>{lastname}</div> */}
-
-
             <div className="w-full mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
                 <div className="border-b px-4 pb-6">
                     <div className="text-center my-4">
@@ -59,8 +54,8 @@ const Profile = () => {
                         </div>
 
                         <div className="py-2">
-                            <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1 capitalize">{firstname + " " + lastname}</h3>
-                            <h3 className="font-bold text-sm text-gray-400 dark:text-white mb-1">{username}</h3>
+                            <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1">{username}</h3>
+                            <h3 className="font-bold text-sm text-gray-400 dark:text-white mb-1 capitalize">{firstname + " " + lastname}</h3>
                             <div className="inline-flex text-gray-700 dark:text-gray-300 items-center">
                                 <svg className="h-5 w-5 text-gray-400 dark:text-gray-600 mr-1" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -89,10 +84,6 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-
-
-
-
 
         </div>
     );

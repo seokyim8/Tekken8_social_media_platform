@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
 
+
 # Create your views here.
 
 def create_user(request, format=None): 
@@ -37,6 +38,31 @@ def display_user_info(request, format=None):
                     # TODO: ADD MORE FIELDS LATER ON
                 }
                 return JsonResponse(data=data)
+        else:
+            return redirect(request.path_info + "?username=" + request.user.username)
+    else:
+        return redirect("/sign-in")
+
+def display_all_users(request, format=None):
+    if request.user.is_authenticated:
+        # fetching username info and appending it to the url as a query parameter in case it isn't done already
+        if request.GET.get("username"): 
+            user_list = User.objects.all()
+            data = {
+                "user_list": [],
+            }
+
+            for user in user_list:
+                temp = {
+                    "user_name": user.username,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "last_login": user.last_login,
+                }
+                data["user_list"].append(temp)
+
+            print(data["user_list"])
+            return JsonResponse(data=data)
         else:
             return redirect(request.path_info + "?username=" + request.user.username)
     else:

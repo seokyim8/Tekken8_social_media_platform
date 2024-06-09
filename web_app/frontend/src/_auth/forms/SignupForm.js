@@ -2,7 +2,7 @@ import React from 'react';
 import CSRFToken from './csrftoken';
 
 const SignupForm = () => {
-    const isLoading = false; // TODO: ADD PASSWORD CHECK FUNCTION
+    const isLoading = false; // TODO: ADD PASSWORD CHECK FUNCTION // TODO: ADD RESIDENCE AREA FIELD
 
     return (
         <form method='post' action='/api/create_user' className="max-w-md mx-auto">
