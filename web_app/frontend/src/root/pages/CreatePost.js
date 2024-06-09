@@ -3,8 +3,8 @@ import PostForm from '../../components/forms/PostForm';
 
 const CreatePost = () => {
     return (
-        <div className='flex flex-1 mt-4 py-20'>
-            <div className='max-w-5xl justify-start w-full '>
+        <div className='flex w-96 mt-4 py-20 mx-auto'>
+            <div className='max-w-5xl justify-center w-full '>
                 <div className='flex flex-row m-5 justify-center mx-auto'>
                     <svg className="w-8 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
