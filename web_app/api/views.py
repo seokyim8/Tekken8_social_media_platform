@@ -26,19 +26,22 @@ def create_user(request, format=None):
 
 def display_user_info(request, format=None): 
     if request.user.is_authenticated:
-        # fetching username info and appending it to the url as a query parameter in case it isn't done already
-        if request.GET.get("username"): 
-            user_list = User.objects.filter(username=request.GET.get("username"))
-            for user in user_list:
-                data = {
-                    "username": user.username,
-                    "first_name": user.first_name,
-                    "last_name": user.last_name,
-                    # TODO: ADD MORE FIELDS LATER ON
-                }
-                return JsonResponse(data=data)
-        else:
-            return redirect(request.path_info + "?username=" + request.user.username)
+        if request.GET.get("target"): # target exists == request to view someone else's profile
+            user = User.objects.get(username=request.GET.get("target"))
+            data = {
+                "username": user.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+            }
+            return JsonResponse(data=data)
+        else: # target does not exist == request to view their own profile
+            user = User.objects.get(username=request.GET.get("username"))
+            data = {
+                "username": user.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+            }
+            return JsonResponse(data=data)
     else:
         return redirect("/sign-in")
 
@@ -60,7 +63,6 @@ def display_all_users(request, format=None):
                 }
                 data["user_list"].append(temp)
 
-            print(data["user_list"])
             return JsonResponse(data=data)
         else:
             return redirect(request.path_info + "?username=" + request.user.username)
@@ -109,7 +111,6 @@ def get_all_posts(request, format=None):
         return redirect("/sign-in")
 
 def get_image(request, format=None):
-    print("WHAT")
     return JsonResponse(data={})
 
 

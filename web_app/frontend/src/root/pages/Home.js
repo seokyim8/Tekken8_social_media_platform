@@ -2,9 +2,11 @@ import React from 'react';
 import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
     const [postList, setPostlist] = useState(null);
+    let [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         // Make get request to 
@@ -48,8 +50,8 @@ const Home = () => {
                     {postList.map((item) => {
                         return (
                             <li key={item.post_id} className='border-b p-4 flex flex-row border:gray-100 dark:border-gray-600'>
-                                <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                    <a href="#" className='flex flex-row'>
+                                <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <a href={"/profile/?target=" + item.author} className='flex flex-row'>
                                         <div className="relative inline-flex items-center justify-center m-4 w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                             <span className="text-xl text-gray-600 dark:text-gray-300">{String(item.first_name)[0].toUpperCase() + String(item.last_name)[0].toUpperCase()}</span>
                                         </div>
@@ -59,10 +61,10 @@ const Home = () => {
                                             <span className='text-gray-400'>{item.first_name} {item.last_name}</span>
                                         </div>
                                     </a>
-                                    <div class="p-5">
-                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
+                                    <div className="p-5">
+                                        <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
                                         <img src={item.image_src} className='max-w-3xl my-2'/>
-                                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.body}</p>
+                                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.body}</p>
                                         <span className="flex-1 text-xs text-blue-600 dark:text-blue-500">posted on {item.date_created}</span>
                                     </div>
                                 </div>

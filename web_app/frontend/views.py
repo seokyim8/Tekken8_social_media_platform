@@ -8,13 +8,25 @@ def index(request, *args, **kwargs):
     if request.path_info == "/sign-in" or request.path_info == "/sign-up":
         return render(request, "frontend/index.html")
 
-
     # For other requests:
     if request.user.is_authenticated: # WAS KEY!!!!!!
         if request.GET.get("username"):
             return render(request, "frontend/index.html")
         else:
-            return redirect(request.path_info + "?username=" + request.user.username)
+            query_exists = False
+            for letter in request.get_full_path():
+                if letter == "?":
+                    query_exists = True
+                    break
+
+            redirected_path = request.get_full_path()
+            if query_exists:
+                redirected_path += "&username=" + request.user.username
+            else:
+                redirected_path += "?username=" + request.user.username
+            
+            return redirect(redirected_path)
+            
     else:
         return redirect("/sign-in")
 

@@ -2,11 +2,13 @@ import React from 'react';
 import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (props) => {
     const [username, setUsername] = useState(null);
     const [firstname, setFirstname] = useState(null);
     const [lastname, setLastname] = useState(null);
+    let [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         // Make get request to 
@@ -21,7 +23,14 @@ const Profile = () => {
 
         };
 
-        axios.get("/api/get_user_info", data, { headers: headers }).then(function (response) {
+        console.log(window.location.href);
+
+        let get_link = "/api/get_user_info?username=" + searchParams.get("username");
+        if(searchParams.get("target") != null){
+            get_link += "&target=" + searchParams.get("target");
+        }
+
+        axios.get(get_link, data, { headers: headers }).then(function (response) {
             console.log(response)
             setUsername(response.data["username"]);
             setFirstname(() => {
