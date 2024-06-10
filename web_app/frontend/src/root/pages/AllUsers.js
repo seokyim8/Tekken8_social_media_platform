@@ -41,7 +41,7 @@ const AllUsers = () => {
                                 </div>
                                 <div className='flex flex-col'>
                                     <p className="flex flex-col flex-1 text-sm text-gray-500 dark:text-gray-400">
-                                        <a href="#" className="flex-1 font-medium text-gray-900 dark:text-white">{item.user_name}</a>
+                                        <a href={"/profile?target=" + item.user_name} className="flex-1 font-medium text-gray-900 dark:text-white">{item.user_name}</a>
                                         <span className="flex-1 font-medium text-gray-400 dark:text-white">{item.first_name} {item.last_name}</span>
                                     </p>
                                     <span className="flex-1 text-xs text-blue-600 dark:text-blue-500">last logged in on {item.last_login.split("T")[0]} at {item.last_login.split("T")[1].split(".")[0]}</span>
