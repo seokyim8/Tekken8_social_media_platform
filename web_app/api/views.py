@@ -93,6 +93,8 @@ def get_all_posts(request, format=None):
                     "title": post.title,
                     "body": post.body,
                     "author": post.author.username,
+                    "first_name": post.author.first_name,
+                    "last_name": post.author.last_name,
                     "date_created": post.date_created,
                     "likes": post.likes,
                     "post_id": post.post_id,
