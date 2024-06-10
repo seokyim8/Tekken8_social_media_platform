@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import CSRFToken from "../../_auth/forms/csrftoken";
 
 const PostForm = () => {
     const [image, setImage] = useState(null);
@@ -22,10 +23,11 @@ const PostForm = () => {
 
     return (
         <>
-            <form className="max-w-sm mx-auto h-full">
+            <form method="post" action="/api/create_post" className="max-w-sm mx-auto h-full" encType="multipart/form-data">
+                <CSRFToken />
                 <div>
                     <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                    <input type="text" id="title" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input required type="text" name="title" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
 
                 <span className="block mt-4 mb-2 text-sm font-medium text:gray-900">Add Images</span>
@@ -44,17 +46,17 @@ const PostForm = () => {
                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" onChange={onSetImage} className="hidden" />
                         </label>
                     )}
+                    <input id="dropzone-file" name="dropzone-file" type="file" onChange={onSetImage} className="hidden" />
                 </div>
 
                 <div className="max-w-sm mx-auto my-4">
-                    <label htmlFor="content" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
-                    <textarea id="content" rows="10" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your ideas ..."></textarea>
+                    <label htmlFor="body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
+                    <textarea required name="body" rows="10" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your ideas ..." />
                 </div>
 
-                <button type="submit" formAction="" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                <button type="submit" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
                     Post
                 </button>
             </form>

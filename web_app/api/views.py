@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import generics, status
-from .serializers import PostSerializer
 from .models import Post
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -68,20 +67,49 @@ def display_all_users(request, format=None):
     else:
         return redirect("/sign-in")
 
+def create_post(request, format=None):
+    if request.user.is_authenticated:
+        # fetching username info and appending it to the url as a query parameter in case it isn't done already
+        user = User.objects.get(username=request.user.username)
+        data = request.POST
+        post_tbc = Post(title=data.get("title"), body=data.get("body"), author=user, image=request.FILES.get("dropzone-file"))
 
-class PostView(APIView):
-    # TODO: TEMPORARY; WILL BE FIXED!
-    serializer_class = PostSerializer
+        post_tbc.save()
+        return redirect("/home")
+    else:
+        return redirect("/sign-in")
 
+def get_all_posts(request, format=None):
+    if request.user.is_authenticated:
+        # fetching username info and appending it to the url as a query parameter in case it isn't done already
+        if request.GET.get("username"): 
+            post_list = Post.objects.all()
+            data = {
+                "post_list": [],
+            }
 
-    def post(self, request, format = None):
-        if not self.request.session.exists(self.request.session.session_key):
-            self.request.session.create()
+            for post in post_list:
+                temp = {
+                    "title": post.title,
+                    "body": post.body,
+                    "author": post.author.username,
+                    "date_created": post.date_created,
+                    "likes": post.likes,
+                    "post_id": post.post_id,
+                    "image_src": str(post.image)
+                }
+                data["post_list"].append(temp)
 
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            title = serializer.data.title
-        pass
+            return JsonResponse(data=data)
+        else:
+            return redirect(request.path_info + "?username=" + request.user.username)
+    else:
+        return redirect("/sign-in")
+
+def get_image(request, format=None):
+    print("WHAT")
+    return JsonResponse(data={})
+
 
 def login_user(request):
     username = request.POST.get("username")
