@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from "react-router-dom";
 
-const Profile = (props) => {
+const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE MADE
     const [username, setUsername] = useState(null);
     const [firstname, setFirstname] = useState(null);
     const [lastname, setLastname] = useState(null);

@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 # Create your views here.
@@ -74,9 +76,18 @@ def create_post(request, format=None):
         # fetching username info and appending it to the url as a query parameter in case it isn't done already
         user = User.objects.get(username=request.user.username)
         data = request.POST
+
+        # Checking sentiment score
+        sid = SentimentIntensityAnalyzer() # TODO: don't forget to add nltk vader download statements to the github action yaml file
+        compound_score = sid.polarity_scores(data.get("body"))["compound"]
+        # Threshold for negativity: -0.75
+        if compound_score < -0.75:
+            return redirect("/create-post")
+
         post_tbc = Post(title=data.get("title"), body=data.get("body"), author=user, image=request.FILES.get("dropzone-file"))
 
         post_tbc.save()
+
         return redirect("/home")
     else:
         return redirect("/sign-in")
