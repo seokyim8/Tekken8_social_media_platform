@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login_user, logout_user, create_user, display_user_info, display_all_users, create_post, get_all_posts, get_image, get_user_posts
+from .views import login_user, logout_user, create_user, display_user_info, display_all_users, create_post, get_all_posts, get_image, get_user_posts, delete_post
 
 urlpatterns = [
     path('login', login_user),
@@ -11,5 +11,6 @@ urlpatterns = [
     path('create_post', create_post),
     path('get_all_posts', get_all_posts),
     path('get_user_posts', get_user_posts),
+    path('delete_post', delete_post),
     path('images/', get_image),
 ]

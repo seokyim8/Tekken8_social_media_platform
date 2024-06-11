@@ -78,7 +78,7 @@ def create_post(request, format=None):
         data = request.POST
 
         # Checking sentiment score
-        sid = SentimentIntensityAnalyzer() # TODO: don't forget to add nltk vader download statements to the github action yaml file
+        sid = SentimentIntensityAnalyzer() 
         compound_score = sid.polarity_scores(data.get("body"))["compound"]
         # Threshold for negativity: -0.75
         if compound_score < -0.75:
@@ -151,6 +151,20 @@ def get_user_posts(request, format=None):
             return JsonResponse(data=data)
         else:
             return redirect(request.path_info + "?username=" + request.user.username)
+    else:
+        return redirect("/sign-in")
+    
+def delete_post(request, format=None):
+    if request.user.is_authenticated:
+        # Checking whether or not the current authenticated user has ownership of the post
+        if request.user.username != request.POST.get("author"):
+            return redirect("/home")
+
+        post = Post.objects.get(post_id=request.POST.get("post_id"))
+        post.delete()
+        if request.POST.get("previous_page"): # If the previous page is specified, redirect to that page
+            return redirect(request.POST.get("previous_page"))
+        return redirect("/home")
     else:
         return redirect("/sign-in")
 

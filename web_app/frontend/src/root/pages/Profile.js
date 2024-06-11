@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from "react-router-dom";
+import CSRFToken from '../../_auth/forms/csrftoken';
 
 const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE MADE
     const [username, setUsername] = useState(null);
@@ -70,6 +71,12 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
                     if (element.title == "") {
                         element.title = "(No Title)"
                     }
+
+                    // Determining whether you can delete the post or not based on ownership
+                    element.can_delete = false;
+                    if (element.author == searchParams.get("username")) {
+                        element.can_delete = true;
+                    }
                 });
 
                 return response.data["post_list"];
@@ -119,7 +126,7 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
                 <div className="px-4 py-4">
                     <div className="flex gap-2 items-center text-gray-800 dark:text-gray-300 mb-4">
                         <ul className='w-screen'>
-                            {postList? postList.map((item) => {
+                            {postList ? postList.map((item) => {
                                 return (
                                     <li key={item.post_id} className='border-b p-4 flex flex-row border:gray-100 dark:border-gray-600'>
                                         <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -135,10 +142,25 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
                                             </a>
                                             <div className="p-5">
                                                 <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
-                                                <img src={item.image_src} className='max-w-3xl my-2' alt=''/>
+                                                <img src={item.image_src} className='max-w-3xl my-2' alt='' />
                                                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.body}</p>
                                                 <span className="flex-1 text-xs text-blue-600 dark:text-blue-500">posted on {item.date_created}</span>
                                             </div>
+                                            {item.can_delete ?
+                                                <form action={"/api/delete_post?username=" + searchParams.get("username")} method='post'>
+                                                    <CSRFToken />
+                                                    <button className="relative inline-flex items-center justify-center p-0.5 m-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+                                                        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                                            Delete Post
+                                                        </span>
+                                                    </button>
+                                                    <input readOnly className='hidden' name="post_id" value={item.post_id} />
+                                                    <input readOnly className='hidden' name="author" value={item.author} />
+                                                    <input readOnly className='hidden' name="previous_page" value={window.location.href} />
+                                                </form>
+                                                : (
+                                                    <></>
+                                                )}
                                         </div>
 
                                     </li>
