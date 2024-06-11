@@ -8,10 +8,11 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
     const [username, setUsername] = useState(null);
     const [firstname, setFirstname] = useState(null);
     const [lastname, setLastname] = useState(null);
+    const [postList, setPostlist] = useState(null);
     let [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        // Make get request to 
+        // Make get request for profile info
         axios.defaults.xsrfCookieName = "csrftoken";
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 
@@ -26,7 +27,7 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
         console.log(window.location.href);
 
         let get_link = "/api/get_user_info?username=" + searchParams.get("username");
-        if(searchParams.get("target") != null){
+        if (searchParams.get("target") != null) {
             get_link += "&target=" + searchParams.get("target");
         }
 
@@ -50,6 +51,34 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
         }).catch(function (error) {
             console.log(error);
         });
+
+
+        // Make get request for post info
+        let get_post_link = "/api/get_user_posts?username=" + searchParams.get("username");
+        if (searchParams.get("target") != null) {
+            get_post_link += "&target=" + searchParams.get("target");
+        }
+
+        axios.get(get_post_link, data, { headers: headers }).then(function (response) {
+            setPostlist(() => {
+                response.data["post_list"].forEach(element => {
+                    // Adjusting image src
+                    const [, firstPart, ...rest] = element.image_src.split("/");
+                    element.image_src = "/static/" + rest.join("/");
+
+                    // Adjusting post title (preventing empty titles)
+                    if (element.title == "") {
+                        element.title = "(No Title)"
+                    }
+                });
+
+                return response.data["post_list"];
+            });
+            console.log(response.data)
+        }).catch(function (error) {
+            console.log(error);
+        });
+
 
     }, []);
 
@@ -89,7 +118,35 @@ const Profile = (props) => { // TODO: SHOW A LIST OF POSTS THAT THE USERS HAVE M
 
                 <div className="px-4 py-4">
                     <div className="flex gap-2 items-center text-gray-800 dark:text-gray-300 mb-4">
-                        TODO: POSTS MADE BY THIS PERSON SHOULD SHOW UP HERE!
+                        <ul className='w-screen'>
+                            {postList? postList.map((item) => {
+                                return (
+                                    <li key={item.post_id} className='border-b p-4 flex flex-row border:gray-100 dark:border-gray-600'>
+                                        <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                            <a href={"/profile/?target=" + item.author} className='flex flex-row'>
+                                                <div className="relative inline-flex items-center justify-center m-4 w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <span className="text-xl text-gray-600 dark:text-gray-300">{String(item.first_name)[0].toUpperCase() + String(item.last_name)[0].toUpperCase()}</span>
+                                                </div>
+
+                                                <div className='flex flex-col m-5'>
+                                                    <span className='font-semibold'>{item.author}</span>
+                                                    <span className='text-gray-400'>{item.first_name} {item.last_name}</span>
+                                                </div>
+                                            </a>
+                                            <div className="p-5">
+                                                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
+                                                <img src={item.image_src} className='max-w-3xl my-2' alt=''/>
+                                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.body}</p>
+                                                <span className="flex-1 text-xs text-blue-600 dark:text-blue-500">posted on {item.date_created}</span>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                );
+                            }) : (
+                                <div>no content</div>
+                            )}
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@ const Home = () => {
                                     </a>
                                     <div className="p-5">
                                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
-                                        <img src={item.image_src} className='max-w-3xl my-2'/>
+                                        <img src={item.image_src} className='max-w-3xl my-2' alt=''/>
                                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.body}</p>
                                         <span className="flex-1 text-xs text-blue-600 dark:text-blue-500">posted on {item.date_created}</span>
                                     </div>

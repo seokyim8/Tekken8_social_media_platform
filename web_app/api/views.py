@@ -120,6 +120,39 @@ def get_all_posts(request, format=None):
             return redirect(request.path_info + "?username=" + request.user.username)
     else:
         return redirect("/sign-in")
+    
+def get_user_posts(request, format=None):
+    if request.user.is_authenticated:
+        # fetching username info and appending it to the url as a query parameter in case it isn't done already
+        if request.GET.get("username"): 
+            post_list = Post.objects.filter(author=User.objects.get(username=request.GET.get("username")))
+            # If target is provided, we need to serve profile info of the target
+            if request.GET.get("target"):
+                post_list = Post.objects.filter(author=User.objects.get(username=request.GET.get("target")))
+
+            data = {
+                "post_list": [],
+            }
+
+            for post in post_list:
+                temp = {
+                    "title": post.title,
+                    "body": post.body,
+                    "author": post.author.username,
+                    "first_name": post.author.first_name,
+                    "last_name": post.author.last_name,
+                    "date_created": post.date_created,
+                    "likes": post.likes,
+                    "post_id": post.post_id,
+                    "image_src": str(post.image)
+                }
+                data["post_list"].append(temp)
+
+            return JsonResponse(data=data)
+        else:
+            return redirect(request.path_info + "?username=" + request.user.username)
+    else:
+        return redirect("/sign-in")
 
 def get_image(request, format=None):
     return JsonResponse(data={})
