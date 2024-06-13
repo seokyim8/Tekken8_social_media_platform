@@ -21,7 +21,8 @@ def create_user(request, format=None):
 
     post_info = request.POST
 
-    user = User.objects.create_user(username=post_info["username"], password=post_info["password"], first_name=post_info["first_name"], last_name=post_info["last_name"])
+    user = User.objects.create_user(username=post_info["username"], first_name=post_info["first_name"], last_name=post_info["last_name"])
+    user.set_password(post_info["password"])
     user.save()
 
     return redirect("/sign-in")
