@@ -5,6 +5,7 @@ Wondering how to smoothly build a social media website with Python and React.js?
 # Project: Tekken8_social_media_platform
 ### Summary:
 <p>A responsive full-stack social media web application that supports most of the social media functionalities, including sign-up, posting, auto-censoring of toxic posts, viewing user info, checking profile, etc.</p>
+
 ### Technologies Used:
 <p> Python, React.js, Javascript, Django, Tailwind.css, Webpack, NLTK, SQLite, AWS(EC2), Docker, Github Action (for CI/CD)</p>
 
