@@ -4,3 +4,4 @@ django-tailwind==3.8.0
 django-browser-reload==1.12.1
 nltk==3.8.1
 pillow==10.3.0
+django-cors-headers==4.3.1

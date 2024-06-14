@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^hhr=b1873@ibvgsi^b8n%mxz2&)_4*kg)3#z82(s+(xs3n6p@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['18.212.126.33']
+ALLOWED_HOSTS = ['18.212.126.33', "127.0.0.1"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
+    "corsheaders",
 
     "tailwind",
     "theme",
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
@@ -141,3 +143,36 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# CRSF-token related stuff
+
+CORS_ALLOW_ALL_ORIGINS=False
+
+CSRF_TRUSTED_ORIGINS = ['http://18.212.126.33:8001', 'https://18.212.126.33:8001', 'http://18.212.126.33', 'https://18.212.126.33']
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False

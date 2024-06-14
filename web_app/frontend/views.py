@@ -31,4 +31,4 @@ def index(request, *args, **kwargs):
         return redirect("/sign-in")
 
 def nothing(request, *args, **kwargs):
-    return redirect("/home/") # TODO: PRESERVE PARAMETERS?
+    return redirect("/home/")
