@@ -14,9 +14,10 @@ Technologies Used: Python, React.js, Javascript, Django, Tailwind.css, Webpack, 
 
 <img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/c45a4401-8b19-4ffc-84b1-63bcc626fcbf" height=300 width=600 />
 
-![tksm_page_2](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/c45a4401-8b19-4ffc-84b1-63bcc626fcbf)
+<img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/9ff86072-b654-48d8-8829-9d807fbb2d06" height=300 width=600 />
 
-![tksm_page_3](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/9ff86072-b654-48d8-8829-9d807fbb2d06)
+
+https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/9ff86072-b654-48d8-8829-9d807fbb2d06
 
 ![tksm_page_4](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/f537072c-34c1-4a0d-b8bc-40423c2849d6)
 
