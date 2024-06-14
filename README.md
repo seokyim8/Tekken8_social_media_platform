@@ -10,6 +10,8 @@ Wondering how to smoothly build a social media website with Python and React.js?
 <a href="http://18.212.126.33:8001/home">http://18.212.126.33:8001/home</a>
 
 # Preview
-<div style="background-color:gray"></div>
-![tksm_page_2](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/e6e7f26a-be05-4445-a8ba-be66ed7df831)
-![tksm_page_5](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/5e9c69b1-dcfc-459e-8f73-1a46fa2682cf)
+<div style="background-color:gray">
+  ![tksm_page_2](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/e6e7f26a-be05-4445-a8ba-be66ed7df831)
+  ![tksm_page_5](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/5e9c69b1-dcfc-459e-8f73-1a46fa2682cf)
+</div>
+
