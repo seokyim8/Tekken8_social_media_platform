@@ -8,3 +8,14 @@ Technologies Used: Python, React.js, Javascript, Django, Tailwind.css, Webpack, 
 
 <h1>Website Link:</h1>
 <a href="http://18.212.126.33:8001/home">http://18.212.126.33:8001/home</a>
+
+# Preview
+![tksm_page_1](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/ac748e38-2e71-48bb-b88e-728cd956e32b)
+
+![tksm_page_2](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/c45a4401-8b19-4ffc-84b1-63bcc626fcbf)
+
+![tksm_page_3](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/9ff86072-b654-48d8-8829-9d807fbb2d06)
+
+![tksm_page_4](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/f537072c-34c1-4a0d-b8bc-40423c2849d6)
+
+![tksm_page_5](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/3b5630f1-7768-4263-9282-ad9e3b81330a)
