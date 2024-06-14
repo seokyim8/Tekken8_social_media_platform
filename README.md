@@ -12,13 +12,13 @@ Technologies Used: Python, React.js, Javascript, Django, Tailwind.css, Webpack, 
 # Preview
 ![tksm_page_1](https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/ac748e38-2e71-48bb-b88e-728cd956e32b)
 
-<img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/c45a4401-8b19-4ffc-84b1-63bcc626fcbf" height=300 width=600 />
+<img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/c45a4401-8b19-4ffc-84b1-63bcc626fcbf" height=300 width=550 />
 
 <img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/9ff86072-b654-48d8-8829-9d807fbb2d06" height=600 width=300 />
 
 
 
-<img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/f537072c-34c1-4a0d-b8bc-40423c2849d6" height=300 width=600 />
+<img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/f537072c-34c1-4a0d-b8bc-40423c2849d6" height=300 width=550 />
 
 <img src="https://github.com/seokyim8/Tekken8_social_media_platform/assets/49558316/3b5630f1-7768-4263-9282-ad9e3b81330a" height=600 width=300 />
 
