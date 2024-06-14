@@ -148,31 +148,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CRSF-token related stuff
 
-CORS_ALLOW_ALL_ORIGINS=False
-
-CSRF_TRUSTED_ORIGINS = ['http://18.212.126.33:8001', 'https://18.212.126.33:8001', 'http://18.212.126.33', 'https://18.212.126.33']
-
-CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-]
-
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-]
-
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = ['http://18.212.126.33:8001', "http://localhost:8000"]

@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 
 
 # Create your views here.
+@ensure_csrf_cookie
 def index(request, *args, **kwargs):
     # For signing in or up:
     if request.path_info == "/sign-in" or request.path_info == "/sign-up":
@@ -30,5 +33,6 @@ def index(request, *args, **kwargs):
     else:
         return redirect("/sign-in")
 
+@ensure_csrf_cookie
 def nothing(request, *args, **kwargs):
     return redirect("/home/")

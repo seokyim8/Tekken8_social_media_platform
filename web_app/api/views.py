@@ -11,6 +11,8 @@ from django.contrib import messages
 from django.http import JsonResponse
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 
 
 # Create your views here.
@@ -173,6 +175,7 @@ def get_image(request, format=None):
     return JsonResponse(data={})
 
 
+@ensure_csrf_cookie
 def login_user(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
